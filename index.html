@@ -184,6 +184,7 @@ async function fetchClaude(panelId, tab) {
   if (cached && (Date.now() - cached.time) < 10 * 60 * 1000) return cached.items;
 
   try {
+    console.log('Fetching Claude for', panelId, tab.id);
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -194,14 +195,19 @@ async function fetchClaude(panelId, tab) {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 3000,
+        max_tokens: 2000,
         tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 2 }],
         messages: [{ role: 'user', content: tab.prompt }]
       }),
-      signal: AbortSignal.timeout(40000)
+      signal: AbortSignal.timeout(60000)
     });
 
-    if (!res.ok) { console.warn('Claude error:', res.status); return []; }
+    console.log('Claude response status:', res.status, 'for', panelId);
+    if (!res.ok) { 
+      const errText = await res.text();
+      console.warn('Claude error:', res.status, errText);
+      return []; 
+    }
 
     const data = await res.json();
     const text = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
@@ -384,3 +390,4 @@ setInterval(() => {
 </script>
 </body>
 </html>
+
