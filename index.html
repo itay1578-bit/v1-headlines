@@ -195,7 +195,7 @@ async function fetchClaude(panelId, tab) {
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 3000,
-        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 2 }],
         messages: [{ role: 'user', content: tab.prompt }]
       }),
       signal: AbortSignal.timeout(40000)
@@ -326,11 +326,10 @@ async function refreshAll() {
   const spin = document.getElementById('refresh-spin');
   spin.classList.add('spinning');
   document.getElementById('last-update').textContent = 'מרענן…';
-  // Clear cache
   Object.keys(cache).forEach(k => delete cache[k]);
-  // Fetch active tab of each panel
   for (const p of PANELS) {
     await fetchPanel(p.id);
+    await new Promise(r => setTimeout(r, 3000));
   }
   spin.classList.remove('spinning');
   document.getElementById('last-update').textContent = 'עודכן: ' + new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});
@@ -368,10 +367,14 @@ buildGrid();
 
 // Auto-load if key exists
 if (ANTHROPIC_KEY) {
+  // Load panels one by one with delay to avoid rate limits
   setTimeout(async () => {
-    for (const p of PANELS) { await fetchPanel(p.id); }
+    for (const p of PANELS) {
+      await fetchPanel(p.id);
+      await new Promise(r => setTimeout(r, 3000)); // 3 second delay between panels
+    }
     document.getElementById('last-update').textContent = 'עודכן: ' + new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});
-  }, 500);
+  }, 1000);
 }
 
 // Auto-refresh every 20 minutes
