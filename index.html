@@ -3,90 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V1 HEADLINES — כותרות חיות</title>
+<title>V1 HEADLINES — ישראל</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0c0c0c;--s:#161616;--s2:#1e1e1e;--b:#282828;--b2:#363636;
-  --red:#E8412A;--red2:#c73520;--orange:#FF6B35;
-  --green:#22C55E;--purple:#8B5CF6;--yellow:#EAB308;
+  --red:#E8412A;--red2:#c73520;
+  --green:#22C55E;--purple:#8B5CF6;
   --t:#f5f5f5;--t2:#c8c8c8;--m:#707070;--m2:#444;--m3:#2a2a2a;
 }
 body{background:var(--bg);color:var(--t);font-family:'Heebo',sans-serif;height:100vh;overflow:hidden;display:flex;flex-direction:column}
 
-/* HEADER */
 .header{background:var(--red);padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:3px solid var(--red2);position:relative;overflow:hidden;min-height:56px}
 .header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 12px,rgba(0,0,0,.06) 12px,rgba(0,0,0,.06) 13px);pointer-events:none}
 .logo-block{display:flex;align-items:center;gap:12px;padding:10px 0;position:relative;z-index:1}
 .logo-svg{width:42px;height:30px;flex-shrink:0;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.4))}
-.logo-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;line-height:1;text-shadow:2px 2px 0 rgba(0,0,0,.3)}
+.logo-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;line-height:1}
 .logo-sub{font-family:'IBM Plex Mono',monospace;font-size:8px;color:rgba(255,255,255,.7);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
 .header-center{display:flex;align-items:center;gap:8px;position:relative;z-index:1;flex:1;justify-content:center;padding:0 20px}
 .api-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.7);white-space:nowrap}
-.api-input{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:5px 10px;color:#fff;font-size:11px;width:280px;direction:ltr;outline:none;font-family:'IBM Plex Mono',monospace}
-.api-input:focus{border-color:rgba(255,255,255,.5)}
-.api-save-btn{padding:5px 12px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);border-radius:5px;color:#fff;cursor:pointer;font-size:11px;font-family:'Heebo',sans-serif;white-space:nowrap;transition:all .15s}
+.api-input{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:5px 10px;color:#fff;font-size:11px;width:260px;direction:ltr;outline:none;font-family:'IBM Plex Mono',monospace}
+.api-save-btn{padding:5px 12px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);border-radius:5px;color:#fff;cursor:pointer;font-size:11px;font-family:'Heebo',sans-serif;white-space:nowrap}
 .api-save-btn:hover{background:rgba(0,0,0,.5)}
-.api-status{font-family:'IBM Plex Mono',monospace;font-size:10px;white-space:nowrap}
+.api-status{font-family:'IBM Plex Mono',monospace;font-size:10px}
 .api-status.ok{color:#4ade80}.api-status.no{color:#fca5a5}
 .header-right{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
 .live-ind{display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.9);letter-spacing:1.5px}
 .live-ind::before{content:'';width:7px;height:7px;border-radius:50%;background:#fff;animation:livepulse 1.8s infinite}
 @keyframes livepulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}70%{box-shadow:0 0 0 6px transparent}100%{box-shadow:0 0 0 0 transparent}}
 .date-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.15);border-radius:4px;padding:4px 9px;color:rgba(255,255,255,.85)}
-.refresh-all-btn{padding:6px 14px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;transition:all .15s;display:flex;align-items:center;gap:6px}
+.refresh-all-btn{padding:6px 14px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;display:flex;align-items:center;gap:6px}
 .refresh-all-btn:hover{background:rgba(0,0,0,.4)}
 .last-update{font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.6)}
-.spin{display:inline-block}
-.spinning .spin{animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+.spinning{animation:spin .7s linear infinite;display:inline-block}
 
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(5,1fr);flex:1;overflow:hidden}
-
-/* PANEL */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);flex:1;overflow:hidden}
 .panel{display:flex;flex-direction:column;border-left:1px solid var(--b);overflow:hidden}
 .panel:last-child{border-left:none}
-.panel-head{padding:10px 14px;border-bottom:1px solid var(--b);flex-shrink:0;background:var(--s);display:flex;align-items:center;justify-content:space-between;gap:8px}
-.panel-title{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
-.panel-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.panel-count{font-size:10px;color:var(--m);font-family:'IBM Plex Mono',monospace}
-.panel-badge{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:700;letter-spacing:.3px}
-.panel-refresh{padding:2px 7px;background:transparent;border:1px solid var(--b2);border-radius:4px;color:var(--m);font-size:10px;cursor:pointer;font-family:'Heebo',sans-serif;transition:all .15s}
+.panel-head{padding:10px 14px;border-bottom:1px solid var(--b);flex-shrink:0;background:var(--s);display:flex;align-items:center;justify-content:space-between}
+.panel-title{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.panel-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.panel-count{font-size:10px;color:var(--m)}
+.panel-refresh{padding:3px 9px;background:transparent;border:1px solid var(--b2);border-radius:4px;color:var(--m);font-size:11px;cursor:pointer;font-family:'Heebo',sans-serif;transition:all .15s}
 .panel-refresh:hover{border-color:var(--red);color:var(--red)}
-.panel-refresh.spinning{animation:spin .7s linear infinite}
-.panel-tabs{display:flex;gap:3px;padding:7px 10px;flex-wrap:wrap;border-bottom:1px solid var(--b);background:var(--bg);flex-shrink:0}
-.tab{padding:3px 8px;background:transparent;border:1px solid var(--b2);border-radius:10px;color:var(--m);font-size:10px;cursor:pointer;font-family:'IBM Plex Mono',monospace;transition:all .12s;white-space:nowrap}
+.panel-tabs{display:flex;gap:4px;padding:8px 12px;flex-wrap:wrap;border-bottom:1px solid var(--b);background:var(--bg);flex-shrink:0}
+.tab{padding:4px 10px;background:transparent;border:1px solid var(--b2);border-radius:12px;color:var(--m);font-size:11px;cursor:pointer;font-family:'Heebo',sans-serif;transition:all .12s}
 .tab:hover{border-color:var(--m2);color:var(--t2)}
 .panel-body{flex:1;overflow-y:auto}
 .panel-body::-webkit-scrollbar{width:3px}
 .panel-body::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px}
 
-/* ITEMS */
-.item{padding:10px 14px;border-bottom:1px solid var(--b);cursor:pointer;transition:background .1s;position:relative}
+.item{padding:11px 14px;border-bottom:1px solid var(--b);cursor:pointer;transition:background .1s;position:relative}
 .item:hover{background:var(--s2)}
 .item.is-new{border-right:3px solid var(--red)}
-.item-title{font-size:13px;font-weight:600;color:var(--t2);line-height:1.4;margin-bottom:4px}
+.item-title{font-size:14px;font-weight:600;color:var(--t2);line-height:1.4;margin-bottom:5px}
 .item:hover .item-title{color:var(--t)}
-.item-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.item-meta{display:flex;gap:6px;align-items:center}
 .item-src{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple)}
 .item-time{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--m2)}
 .item-new{font-size:9px;font-weight:800;background:var(--red);color:#fff;padding:1px 5px;border-radius:3px}
-.item-copy{position:absolute;left:10px;top:10px;padding:2px 7px;background:var(--s);border:1px solid var(--b2);border-radius:3px;color:var(--m);font-size:10px;cursor:pointer;font-family:'Heebo',sans-serif;opacity:0;transition:opacity .12s}
+.item-copy{position:absolute;left:10px;top:11px;padding:2px 7px;background:var(--s);border:1px solid var(--b2);border-radius:3px;color:var(--m);font-size:10px;cursor:pointer;font-family:'Heebo',sans-serif;opacity:0;transition:opacity .12s}
 .item:hover .item-copy{opacity:1}
 .item-copy:hover{border-color:var(--purple);color:var(--purple)}
 
-.panel-empty{padding:30px 14px;text-align:center;color:var(--m);font-size:11px;font-family:'IBM Plex Mono',monospace;line-height:2}
-.panel-loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:30px 14px;color:var(--m);font-size:11px;font-family:'IBM Plex Mono',monospace}
-.loading-spinner{width:20px;height:20px;border:2px solid var(--b2);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite}
-.loading-steps{display:flex;flex-direction:column;gap:4px;font-size:10px;color:var(--m2);text-align:right;direction:rtl}
-.loading-step{display:flex;align-items:center;gap:6px}
-.loading-step.done{color:var(--green)}
-.loading-step.active{color:var(--t)}
-.loading-step .dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0}
+.panel-empty{padding:40px 14px;text-align:center;color:var(--m);font-size:12px;font-family:'IBM Plex Mono',monospace;line-height:2.2;cursor:pointer}
+.panel-empty:hover{color:var(--t2)}
+.panel-loading{display:flex;flex-direction:column;align-items:center;gap:10px;padding:30px 14px;color:var(--m);font-size:11px;font-family:'IBM Plex Mono',monospace;text-align:center}
+.loader{width:24px;height:24px;border:2px solid var(--b2);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite}
+.load-step{font-size:10px;color:var(--m2)}
 
-/* TOAST */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#000;padding:9px 20px;border-radius:7px;font-weight:700;font-size:13px;font-family:'Heebo',sans-serif;transition:transform .25s cubic-bezier(.34,1.56,.64,1);z-index:200;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0)}
 </style>
@@ -104,7 +91,7 @@ body{background:var(--bg);color:var(--t);font-family:'Heebo',sans-serif;height:1
     </svg>
     <div>
       <div class="logo-title">HEADLINES</div>
-      <div class="logo-sub">כותרות חיות · V1</div>
+      <div class="logo-sub">כותרות ישראל · חי</div>
     </div>
   </div>
 
@@ -119,7 +106,7 @@ body{background:var(--bg);color:var(--t);font-family:'Heebo',sans-serif;height:1
     <span class="live-ind">LIVE</span>
     <span class="last-update" id="last-update">—</span>
     <button class="refresh-all-btn" id="refresh-all" onclick="refreshAll()">
-      <span class="spin">↻</span> רענן הכל
+      <span id="refresh-spin">↻</span> רענן הכל
     </button>
     <span class="date-pill" id="datebadge"></span>
   </div>
@@ -150,134 +137,54 @@ function saveApiKey() {
   document.getElementById('api-status').textContent = 'נשמר ✓';
   document.getElementById('api-status').className = 'api-status ok';
   showToast('API Key נשמר ✓');
-  // Refresh Claude panels
-  PANELS.filter(p => p.type === 'claude').forEach(p => fetchPanel(p.id));
+  PANELS.forEach(p => { if (!state[p.id].loaded) fetchPanel(p.id); });
 }
 
 const PANELS = [
   {
-    id: 'ynet', title: 'ynet', color: '#E8412A', type: 'claude',
+    id: 'ynet', title: 'ynet', color: '#E8412A',
     tabs: [
-      {id:'news',  label:'חדשות',  prompt:'Search ynet.co.il right now and find 15 latest news headlines from the last few hours. Return ONLY a JSON array: [{"title":"כותרת בעברית","source":"ynet","url":"https://...","hoursAgo":1}]. Headlines must be in Hebrew. No other text.'},
-      {id:'sport', label:'ספורט',  prompt:'Search ynet.co.il sport section and find 15 latest sports headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"ynet ספורט","url":"https://...","hoursAgo":1}]. Hebrew headlines only. No other text.'},
-      {id:'celeb', label:'בידול',  prompt:'Search ynet.co.il entertainment section and find 15 latest celebrity and entertainment headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"ynet בידול","url":"https://...","hoursAgo":2}]. Hebrew headlines only. No other text.'},
-      {id:'money', label:'כסף',    prompt:'Search ynet.co.il money/business section and find 15 latest financial headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"ynet כסף","url":"https://...","hoursAgo":2}]. Hebrew headlines only. No other text.'}
+      {id:'news',     label:'חדשות',    prompt:'Search ynet.co.il right now. Find 20 of the latest news headlines published today. Return ONLY a valid JSON array, nothing else: [{"title":"כותרת","source":"ynet","url":"https://www.ynet.co.il/...","hoursAgo":1}]'},
+      {id:'sport',    label:'ספורט',    prompt:'Search ynet.co.il sports section. Find 20 latest sports headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"ynet ספורט","url":"https://...","hoursAgo":1}]'},
+      {id:'celeb',    label:'בידול',    prompt:'Search ynet.co.il entertainment section. Find 20 latest celebrity headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"ynet בידול","url":"https://...","hoursAgo":2}]'},
+      {id:'money',    label:'כסף',      prompt:'Search ynet.co.il money section. Find 20 latest financial headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"ynet כסף","url":"https://...","hoursAgo":2}]'}
     ]
   },
   {
-    id: 'walla', title: 'walla', color: '#3B82F6', type: 'claude',
+    id: 'walla', title: 'walla', color: '#3B82F6',
     tabs: [
-      {id:'news',  label:'חדשות', prompt:'Search walla.co.il news section right now and find 15 latest headlines from the last few hours. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"walla","url":"https://...","hoursAgo":1}]. Hebrew headlines only. No other text.'},
-      {id:'sport', label:'ספורט', prompt:'Search walla.co.il sport section and find 15 latest sports headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"walla ספורט","url":"https://...","hoursAgo":1}]. Hebrew only. No other text.'},
-      {id:'celeb', label:'בידור', prompt:'Search walla.co.il entertainment section and find 15 latest celebrity headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"walla בידור","url":"https://...","hoursAgo":2}]. Hebrew only. No other text.'},
-      {id:'tech',  label:'טק',    prompt:'Search walla.co.il tech section and find 15 latest technology headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"walla טק","url":"https://...","hoursAgo":2}]. Hebrew only. No other text.'}
+      {id:'news',     label:'חדשות',    prompt:'Search walla.co.il news section right now. Find 20 latest news headlines published today. Return ONLY JSON array: [{"title":"כותרת","source":"walla","url":"https://...","hoursAgo":1}]'},
+      {id:'sport',    label:'ספורט',    prompt:'Search walla.co.il sport section. Find 20 latest sports headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"walla ספורט","url":"https://...","hoursAgo":1}]'},
+      {id:'celeb',    label:'בידור',    prompt:'Search walla.co.il entertainment section. Find 20 latest celebrity headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"walla בידור","url":"https://...","hoursAgo":2}]'},
+      {id:'tech',     label:'טק',       prompt:'Search walla.co.il tech section. Find 20 latest technology headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"walla טק","url":"https://...","hoursAgo":2}]'}
     ]
   },
   {
-    id: 'n12', title: 'n12 / mako', color: '#8B5CF6', type: 'claude',
+    id: 'n12', title: 'n12 / mako', color: '#8B5CF6',
     tabs: [
-      {id:'news',  label:'חדשות',  prompt:'Search n12.co.il and mako.co.il news sections right now and find 15 latest headlines from the last few hours. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"n12","url":"https://...","hoursAgo":1}]. Hebrew headlines only. No other text.'},
-      {id:'celeb', label:'תרבות',  prompt:'Search mako.co.il entertainment and celebrity section and find 15 latest headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"mako","url":"https://...","hoursAgo":2}]. Hebrew only. No other text.'},
-      {id:'sport', label:'ספורט',  prompt:'Search n12.co.il and sport5.co.il sports sections and find 15 latest headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"sport5","url":"https://...","hoursAgo":1}]. Hebrew only. No other text.'},
-      {id:'politics', label:'פוליטיקה', prompt:'Search n12.co.il and walla.co.il politics sections and find 15 latest Israeli political headlines from today. Return ONLY JSON array: [{"title":"כותרת בעברית","source":"n12","url":"https://...","hoursAgo":1}]. Hebrew only. No other text.'}
-    ]
-  },
-  {
-    id: 'world-news', title: 'חדשות עולם', color: '#22C55E', type: 'claude',
-    tabs: [
-      {id:'breaking',  label:'ברייקינג',  prompt:'Find 15 breaking world news headlines from the last 2 hours. Focus on major global events, politics, conflicts, disasters. Return ONLY a JSON array like: [{"title":"...","source":"...","url":"...","hoursAgo":0.5}]. No other text.'},
-      {id:'politics',  label:'פוליטיקה',  prompt:'Find 15 top political news headlines from the last 6 hours globally. Include Trump, EU, world leaders. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":1}]. No other text.'},
-      {id:'tech',      label:'טק',        prompt:'Find 15 top technology news headlines from today. Include AI, big tech, gadgets. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":2}]. No other text.'},
-      {id:'science',   label:'מדע',       prompt:'Find 15 top science and health news headlines from today. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":3}]. No other text.'},
-      {id:'israel-world', label:'ישראל',  prompt:'Find 15 news headlines about Israel from international sources (BBC, Reuters, AP, CNN) from the last 6 hours. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":1}]. No other text.'}
-    ]
-  },
-  {
-    id: 'world-celeb', title: 'סלבס עולם', color: '#EC4899', type: 'claude',
-    tabs: [
-      {id:'celeb',    label:'סלבס',      prompt:'Find 15 top celebrity and entertainment news headlines from today. Include Hollywood stars, music, movies. Look for Israeli or Jewish celebrities. Return ONLY JSON array: [{"title":"...","source":"TMZ","url":"...","hoursAgo":1}]. No other text.'},
-      {id:'viral',    label:'ויראלי',    prompt:'Find 15 viral videos and stories trending right now globally. Unusual, funny, shocking stories. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":0.5}]. No other text.'},
-      {id:'sports',   label:'ספורט',    prompt:'Find 15 top international sports news from today. Football, NBA, F1, tennis. Include Israeli athletes. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":2}]. No other text.'},
-      {id:'business', label:'עסקים',    prompt:'Find 15 top business and finance news from today. Stock market, major deals, economic news. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":2}]. No other text.'},
-      {id:'jewish',   label:'יהודי/ישראלי', prompt:'Find 15 news about Jewish or Israeli celebrities, businesspeople, athletes appearing in international media today. Return ONLY JSON array: [{"title":"...","source":"...","url":"...","hoursAgo":1}]. No other text.'}
+      {id:'news',     label:'חדשות',    prompt:'Search n12.co.il and mako.co.il news sections right now. Find 20 latest Israeli news headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"n12","url":"https://...","hoursAgo":1}]'},
+      {id:'celeb',    label:'תרבות',    prompt:'Search mako.co.il entertainment section. Find 20 latest celebrity and culture headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"mako","url":"https://...","hoursAgo":2}]'},
+      {id:'sport',    label:'ספורט',    prompt:'Search sport5.co.il and n12.co.il sports. Find 20 latest sports headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"sport5","url":"https://...","hoursAgo":1}]'},
+      {id:'politics', label:'פוליטיקה', prompt:'Search n12.co.il and walla.co.il political sections. Find 20 latest Israeli political headlines from today. Return ONLY JSON array: [{"title":"כותרת","source":"n12","url":"https://...","hoursAgo":1}]'}
     ]
   }
 ];
 
 const state = {};
 PANELS.forEach(p => {
-  state[p.id] = { items: {}, activeTab: p.tabs[0].id, seen: new Set(), loading: false };
+  state[p.id] = { items: {}, activeTab: p.tabs[0].id, seen: new Set(), loaded: false };
 });
 
-// RSS fetching with multi-proxy fallback
-async function fetchRSS(url) {
-  const proxies = [
-    async (u) => {
-      const r = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(u), {signal: AbortSignal.timeout(8000)});
-      if (!r.ok) throw new Error(r.status);
-      const j = await r.json(); return j.contents || null;
-    },
-    async (u) => {
-      const r = await fetch('https://corsproxy.io/?' + encodeURIComponent(u), {signal: AbortSignal.timeout(8000)});
-      if (!r.ok) throw new Error(r.status);
-      const t = await r.text();
-      return (t.includes('<rss') || t.includes('<item') || t.includes('<feed')) ? t : null;
-    },
-    async (u) => {
-      const r = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(u) + '&count=20', {signal: AbortSignal.timeout(8000)});
-      if (!r.ok) throw new Error(r.status);
-      const j = await r.json();
-      if (j.status !== 'ok' || !j.items) throw new Error('bad');
-      return j.items.map(item => ({
-        title: item.title || '', link: item.link || '',
-        pubDate: new Date(item.pubDate || Date.now()),
-        hoursAgo: item.pubDate ? (Date.now() - new Date(item.pubDate).getTime()) / 3600000 : 0,
-        isValid: !!item.pubDate && new Date(item.pubDate).getFullYear() > 2023, source: ''
-      })).filter(i => i.title.length > 2 && i.hoursAgo < 72).sort((a,b) => b.pubDate - a.pubDate);
-    }
-  ];
-  for (const proxyFn of proxies) {
-    try {
-      const result = await proxyFn(url);
-      if (!result) continue;
-      if (Array.isArray(result)) return result;
-      const parsed = parseXML(result);
-      if (parsed.length > 0) return parsed;
-    } catch { continue; }
-  }
-  return [];
-}
+const cache = {};
 
-function parseXML(xmlText) {
-  const parser = new DOMParser();
-  const xml = parser.parseFromString(xmlText, 'text/xml');
-  const items = [...xml.querySelectorAll('item, entry')];
-  const results = [];
-  items.slice(0, 25).forEach(item => {
-    const title = item.querySelector('title')?.textContent?.trim() || '';
-    const link = item.querySelector('link')?.textContent?.trim() || item.querySelector('link')?.getAttribute('href') || '';
-    const dateStr = item.querySelector('pubDate, published, updated')?.textContent || '';
-    const pubDate = dateStr ? new Date(dateStr) : new Date();
-    const isValid = !isNaN(pubDate.getTime()) && pubDate.getFullYear() > 2023;
-    const hoursAgo = isValid ? (Date.now() - pubDate.getTime()) / 3600000 : 0;
-    if (!title || title.length < 3 || (hoursAgo > 72 && isValid)) return;
-    results.push({ title, link, pubDate, hoursAgo, isValid, source: '' });
-  });
-  return results.sort((a,b) => b.pubDate - a.pubDate);
-}
-
-// Claude fetching
-const claudeCache = {};
-async function fetchClaude(tab, panelId) {
+async function fetchClaude(panelId, tab) {
   if (!ANTHROPIC_KEY) return [];
-
-  // Cache 5 minutes
-  const cacheKey = tab.id;
-  const cached = claudeCache[cacheKey];
-  if (cached && (Date.now() - cached.time) < 5 * 60 * 1000) return cached.items;
+  const cacheKey = panelId + '_' + tab.id;
+  const cached = cache[cacheKey];
+  if (cached && (Date.now() - cached.time) < 10 * 60 * 1000) return cached.items;
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -287,98 +194,69 @@ async function fetchClaude(tab, panelId) {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 2000,
-        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 5 }],
+        max_tokens: 3000,
+        tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
         messages: [{ role: 'user', content: tab.prompt }]
       }),
-      signal: AbortSignal.timeout(45000)
+      signal: AbortSignal.timeout(40000)
     });
 
-    if (!response.ok) {
-      console.warn('Claude error:', response.status);
-      return [];
-    }
+    if (!res.ok) { console.warn('Claude error:', res.status); return []; }
 
-    const data = await response.json();
-    const fullText = data.content.filter(b => b.type === 'text').map(b => b.text).join('\n');
+    const data = await res.json();
+    const text = data.content.filter(b => b.type === 'text').map(b => b.text).join('');
+    const match = text.match(/\[[\s\S]*?\]/);
+    if (!match) return [];
 
-    // Parse JSON from response
-    let articles = [];
-    const jsonMatch = fullText.match(/\[[\s\S]*\]/);
-    if (jsonMatch) {
-      try {
-        const parsed = JSON.parse(jsonMatch[0]);
-        articles = parsed.map(a => ({
-          title: a.title || '',
-          link: a.url || '',
-          pubDate: new Date(Date.now() - (a.hoursAgo || 1) * 3600000),
-          hoursAgo: a.hoursAgo || 1,
-          isValid: true,
-          source: a.source || ''
-        })).filter(a => a.title.length > 3);
-      } catch(e) {
-        console.warn('Parse error:', e);
-      }
-    }
+    const items = JSON.parse(match[0]).map(a => ({
+      title: a.title || '',
+      link: a.url || '',
+      pubDate: new Date(Date.now() - (parseFloat(a.hoursAgo) || 1) * 3600000),
+      hoursAgo: parseFloat(a.hoursAgo) || 1,
+      isValid: true,
+      source: a.source || ''
+    })).filter(a => a.title.length > 3);
 
-    claudeCache[cacheKey] = { items: articles, time: Date.now() };
-    return articles;
+    cache[cacheKey] = { items, time: Date.now() };
+    return items;
   } catch(e) {
-    console.warn('Claude fetch error:', e);
+    console.warn('Fetch error:', e);
     return [];
   }
 }
 
-function timeLabel(h, valid) {
-  if (!valid) return '';
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function timeLabel(h) {
   if (h < 0.08) return 'עכשיו';
   if (h < 1) return Math.round(h*60) + ' דק';
   if (h < 24) return Math.round(h) + "ש'";
   return Math.round(h/24) + ' ימים';
 }
 
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-function showLoadingSteps(panelId, steps) {
-  const body = document.getElementById('body-' + panelId);
-  body.innerHTML = `<div class="panel-loading">
-    <div class="loading-spinner"></div>
-    <div class="loading-steps">${steps.map((s,i) => `<div class="loading-step ${i===0?'active':''}" id="step-${panelId}-${i}"><span class="dot"></span>${s}</div>`).join('')}</div>
-  </div>`;
-}
-
-function advanceStep(panelId, stepIdx) {
-  const prev = document.getElementById('step-' + panelId + '-' + (stepIdx-1));
-  const cur = document.getElementById('step-' + panelId + '-' + stepIdx);
-  if (prev) { prev.classList.remove('active'); prev.classList.add('done'); }
-  if (cur) cur.classList.add('active');
-}
-
 async function fetchPanel(panelId) {
   const panel = PANELS.find(p => p.id === panelId);
   const btn = document.getElementById('btn-' + panelId);
   const body = document.getElementById('body-' + panelId);
-  if (btn) { btn.classList.add('spinning'); btn.disabled = true; }
 
-  if (false) {
-    // RSS disabled - all panels use Claude now
-  } else {
-    // Claude panel - fetch only active tab
-    if (!ANTHROPIC_KEY) {
-      body.innerHTML = '<div class="panel-empty">נדרש Anthropic API Key<br>הכנס בשדה למעלה</div>';
-      if (btn) { btn.classList.remove('spinning'); btn.disabled = false; }
-      return;
-    }
-    const activeTabId = state[panelId].activeTab;
-    const activeTab = panel.tabs.find(t => t.id === activeTabId) || panel.tabs[0];
-    showLoadingSteps(panelId, ['מחפש ברשת…', 'מנתח תוצאות…', 'בונה רשימה…']);
-    setTimeout(() => advanceStep(panelId, 1), 8000);
-    setTimeout(() => advanceStep(panelId, 2), 20000);
-    const items = await fetchClaude(activeTab, panelId);
-    state[panelId].items[activeTab.id] = items;
+  if (!ANTHROPIC_KEY) {
+    body.innerHTML = '<div class="panel-empty">הכנס Anthropic API Key בכותרת למעלה</div>';
+    return;
   }
 
-  if (btn) { btn.classList.remove('spinning'); btn.disabled = false; }
+  if (btn) btn.classList.add('spinning');
+  body.innerHTML = `<div class="panel-loading">
+    <div class="loader"></div>
+    <div>מחפש ב-${panel.title}…</div>
+    <div class="load-step">Claude סורק את האינטרנט</div>
+  </div>`;
+
+  const activeTab = panel.tabs.find(t => t.id === state[panelId].activeTab);
+  const items = await fetchClaude(panelId, activeTab);
+  state[panelId].items[activeTab.id] = items;
+  state[panelId].loaded = true;
+
+  if (btn) btn.classList.remove('spinning');
   renderPanel(panelId);
 }
 
@@ -387,44 +265,39 @@ function renderPanel(panelId) {
   const s = state[panelId];
   const body = document.getElementById('body-' + panelId);
   const countEl = document.getElementById('count-' + panelId);
-
-  let items = s.items[s.activeTab] || [];
+  const items = s.items[s.activeTab] || [];
 
   if (countEl) countEl.textContent = items.length || '';
 
   if (!items.length) {
-    if (panel.type === 'claude' && !ANTHROPIC_KEY) {
-      body.innerHTML = '<div class="panel-empty">הכנס Anthropic API Key בכותרת למעלה</div>';
-    } else {
-      body.innerHTML = '<div class="panel-empty">לא נמצאו פריטים<br>לחץ ↻ לרענון</div>';
-    }
+    body.innerHTML = `<div class="panel-empty" onclick="fetchPanel('${panelId}')">
+      לחץ ↻ לטעינת כתבות מ-${panel.title}<br>
+      <small style="font-size:10px;color:var(--m2)">מופעל ע"י Claude AI · ~30 שניות</small>
+    </div>`;
     return;
   }
 
-  body.innerHTML = items.slice(0, 50).map(item => {
-    const id = panelId + '_' + item.title.slice(0,40);
+  body.innerHTML = items.slice(0, 40).map(item => {
+    const id = panelId + '_' + item.title.slice(0, 40);
     const isNew = !s.seen.has(id);
-    const tl = timeLabel(item.hoursAgo, item.isValid);
     return `<div class="item${isNew?' is-new':''}" onclick="window.open('${esc(item.link)}','_blank','noopener')">
       <div class="item-title">${esc(item.title)}</div>
       <div class="item-meta">
         ${item.source ? `<span class="item-src">${esc(item.source)}</span>` : ''}
-        ${tl ? `<span class="item-time">${tl}</span>` : ''}
+        <span class="item-time">${timeLabel(item.hoursAgo)}</span>
         ${isNew ? '<span class="item-new">NEW</span>' : ''}
       </div>
-      <button class="item-copy" onclick="event.stopPropagation();copyTitle('${esc(item.title).replace(/'/g,"&#39;")}')">העתק</button>
+      <button class="item-copy" onclick="event.stopPropagation();copyText('${esc(item.title).replace(/'/g,"&#39;")}')">העתק</button>
     </div>`;
   }).join('');
 
-  items.forEach(item => s.seen.add(panelId + '_' + item.title.slice(0,40)));
-  state[panelId].everLoaded = true;
+  items.forEach(item => s.seen.add(panelId + '_' + item.title.slice(0, 40)));
 }
 
 async function setTab(panelId, tabId, btn) {
   state[panelId].activeTab = tabId;
   const panel = PANELS.find(p => p.id === panelId);
 
-  // Update tab styles
   document.querySelectorAll('#tabs-' + panelId + ' .tab').forEach(b => {
     b.style.background = ''; b.style.borderColor = 'var(--b2)'; b.style.color = 'var(--m)';
   });
@@ -432,45 +305,34 @@ async function setTab(panelId, tabId, btn) {
   btn.style.borderColor = panel.color;
   btn.style.color = panel.color;
 
-  // For Claude panels: fetch if not cached
-  if (panel.type === 'claude' && !state[panelId].items[tabId]) {
-    const tab = panel.tabs.find(t => t.id === tabId);
-    if (tab && ANTHROPIC_KEY) {
-      const bodyEl = document.getElementById('body-' + panelId);
-      const btn2 = document.getElementById('btn-' + panelId);
-      if (btn2) { btn2.classList.add('spinning'); btn2.disabled = true; }
-      showLoadingSteps(panelId, ['מחפש ברשת…', 'מנתח תוצאות…', 'בונה רשימה…']);
-      setTimeout(() => advanceStep(panelId, 1), 8000);
-      setTimeout(() => advanceStep(panelId, 2), 20000);
-      const items = await fetchClaude(tab, panelId);
-      state[panelId].items[tabId] = items;
-      if (btn2) { btn2.classList.remove('spinning'); btn2.disabled = false; }
-    }
+  if (!state[panelId].items[tabId]) {
+    await fetchPanel(panelId);
+  } else {
+    renderPanel(panelId);
   }
-  renderPanel(panelId);
 }
 
-function copyTitle(title) {
-  navigator.clipboard.writeText(title).then(() => showToast('הועתק ✓'));
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => showToast('הועתק ✓'));
 }
 
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
+  t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 1600);
 }
 
 async function refreshAll() {
-  const btn = document.getElementById('refresh-all');
-  btn.classList.add('spinning'); btn.disabled = true;
-  // Refresh all panels sequentially
+  const spin = document.getElementById('refresh-spin');
+  spin.classList.add('spinning');
+  document.getElementById('last-update').textContent = 'מרענן…';
+  // Clear cache
+  Object.keys(cache).forEach(k => delete cache[k]);
+  // Fetch active tab of each panel
   for (const p of PANELS) {
-    if (Object.keys(state[p.id].items).length > 0 || p.id === 'world-news' || p.id === 'world-celeb') {
-      await fetchPanel(p.id);
-    }
+    await fetchPanel(p.id);
   }
-  btn.classList.remove('spinning'); btn.disabled = false;
+  spin.classList.remove('spinning');
   document.getElementById('last-update').textContent = 'עודכן: ' + new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});
 }
 
@@ -482,9 +344,8 @@ function buildGrid() {
           <span class="panel-dot" style="background:${panel.color}"></span>
           ${panel.title}
           <span class="panel-count" id="count-${panel.id}"></span>
-          ${panel.type==='claude'?'<span class="panel-badge" style="background:'+panel.color+'20;color:'+panel.color+';border:1px solid'+panel.color+'40">AI</span>':''}
         </div>
-        <button class="panel-refresh" id="btn-${panel.id}" onclick="fetchPanel('${panel.id}')">↻</button>
+        <button class="panel-refresh" id="btn-${panel.id}" onclick="fetchPanel('${panel.id}')">↻ רענן</button>
       </div>
       <div class="panel-tabs" id="tabs-${panel.id}">
         ${panel.tabs.map((tab, i) => `
@@ -495,27 +356,28 @@ function buildGrid() {
           </button>`).join('')}
       </div>
       <div class="panel-body" id="body-${panel.id}">
-        <div class="panel-empty">לחץ ↻ לטעינה</div>
+        <div class="panel-empty" onclick="fetchPanel('${panel.id}')">
+          לחץ כאן לטעינת כתבות מ-${panel.title}<br>
+          <small style="font-size:10px;color:var(--m2)">מופעל ע"י Claude AI</small>
+        </div>
       </div>
     </div>`).join('');
 }
 
-// Init
 buildGrid();
-// Only auto-load world news on start - Israeli panels load on demand
-setTimeout(async () => {
-  if (ANTHROPIC_KEY) {
-    await fetchPanel('world-news');
-    await fetchPanel('world-celeb');
-  }
-}, 400);
-// Auto-refresh every 15 minutes (Claude API has cost - don't over-refresh)
+
+// Auto-load if key exists
+if (ANTHROPIC_KEY) {
+  setTimeout(async () => {
+    for (const p of PANELS) { await fetchPanel(p.id); }
+    document.getElementById('last-update').textContent = 'עודכן: ' + new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});
+  }, 500);
+}
+
+// Auto-refresh every 20 minutes
 setInterval(() => {
-  PANELS.forEach(p => {
-    // Only refresh if tab has been viewed (items exist)
-    if (Object.keys(state[p.id].items).length > 0) fetchPanel(p.id);
-  });
-}, 15 * 60 * 1000);
+  if (ANTHROPIC_KEY) refreshAll();
+}, 20 * 60 * 1000);
 </script>
 </body>
 </html>
